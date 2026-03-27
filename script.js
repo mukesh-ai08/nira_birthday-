@@ -1,4 +1,4 @@
-const messageText = "Dear Nira, on your 18th birthday I want to say how wonderful you are. Your smile is contagious, your energy is inspiring, and the way you chase your dreams is truly impressive. Whether it's your love for rabbits or your big goal of becoming an IAS Officer or a Doctor, you always bring positivity everywhere. Wishing you a year filled with joy, success, and all the happiness you deserve. Happy Birthday! 🐰✨";
+const messageText = "Dear Nira, on your 18th birthday I want to say how wonderful you are. Your smile is contagious, your energy is inspiring, and the way you chase your dreams is truly impressive. Whether your big goal of becoming an IAS Officer or a Doctor, you always bring positivity everywhere. Wishing you a year filled with joy, success, and all the happiness you deserve. Happy Birthday! 🐰✨";
 
 let i = 0;
 const typewriterEl = document.getElementById('typewriter');
