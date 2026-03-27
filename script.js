@@ -1,71 +1,56 @@
- body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to bottom, #ffe4e9, #ffb6c1);
-  color: #333;
-  overflow-x: hidden;
-  height: 100vh;
-  text-align: center;
+ // Typewriter
+const msg = "Hey Nira! Turning 18 today—wow. You're amazing, always smiling, chasing big dreams like IAS or Doctor. Hope this year brings you tons of joy and wins. Happy birthday! 🌸";
+let idx = 0;
+const typewriter = document.getElementById('typewriter');
+
+function type() {
+  if (idx < msg.length) {
+    typewriter.textContent += msg.charAt(idx);
+    idx++;
+    setTimeout(type, 50);
+  }
 }
 
-.hearts-container {
-  position: fixed;
-  top: 0; left: 0; width: 100%; height: 100%;
-  pointer-events: none;
+// Floating hearts
+function heart() {
+  const h = document.createElement('div');
+  h.textContent = '❤️';
+  h.style.position = 'absolute';
+  h.style.left = Math.random() * 100 + 'vw';
+  h.style.fontSize = '2rem';
+  h.style.opacity = 0.8;
+  h.style.animation = 'float 8s linear infinite';
+  document.querySelector('.hearts-container').appendChild(h);
+  setTimeout(() => h.remove(), 8000);
 }
 
-.content { position: relative; z-index: 2; padding: 40px 20px; }
+setInterval(heart, 300);
 
-.title {
-  font-size: 3.8rem;
-  color: #ff69b4;
-  text-shadow: 0 0 15px #ff69b4;
-  margin: 20px 0;
-  animation: pulse 2s infinite;
+// Confetti on button
+function confettiBurst() {
+  for (let i = 0; i < 80; i++) {
+    const c = document.createElement('div');
+    c.textContent = ['🎉','✨','🌸'] ;
+    c.style.position = 'fixed';
+    c.style.left = Math.random()*100 + 'vw';
+    c.style.top = '-20px';
+    c.style.fontSize = '1.5rem';
+    document.body.appendChild(c);
+    setTimeout(() => {
+      let y = 0;
+      const fall = setInterval(() => {
+        y += 10;
+        c.style.top = y + 'px';
+        if (y > window.innerHeight) clearInterval(fall), c.remove();
+      }, 30);
+    }, i*20);
+  }
 }
 
-@keyframes pulse {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-}
+document.querySelector('.surprise').onclick = confettiBurst;
 
-.photo img {
-  width: 80%; max-width: 400px;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(255,105,180,0.4);
-  margin: 20px 0;
-}
-
-.message {
-  background: white;
-  padding: 30px;
-  border-radius: 25px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  max-width: 600px;
-  margin: 30px auto;
-  font-size: 1.4rem;
-  line-height: 1.8;
-  color: #c71585;
-}
-
-.dream {
-  background: #fff0f5;
-  padding: 20px;
-  border-radius: 15px;
-  margin: 30px auto;
-  max-width: 600px;
-}
-
-.surprise {
-  background: #ff69b4;
-  color: white;
-  border: none;
-  padding: 15px 40px;
-  font-size: 1.3rem;
-  border-radius: 50px;
-  cursor: pointer;
-  box-shadow: 0 5px 15px rgba(255,105,180,0.5);
-  transition: all 0.3s;
-}
-
-.surprise:hover { transform: scale(1.1); background: #ff1493; }
+// Start
+window.onload = () => {
+  type();
+  setTimeout(() => confettiBurst(), 2000);
+};
