@@ -1,4 +1,4 @@
-const messageText = "Dear Nira, on your 18th birthday I want to say how wonderful you are. Your smile is contagious, your energy is inspiring, and the way you chase your dreams is truly impressive. Whether your big goal of becoming an IAS Officer or a Doctor, you always bring positivity everywhere. Wishing you a year filled with joy, success, and all the happiness you deserve. Happy Birthday! 🐰✨";
+ const messageText = "Dear Nira, today marks the beginning of your 18th year — a chapter full of promise and brilliance. Your warm smile brightens every space you enter, your positive energy lifts those around you, and your commitment to your ambitions is truly inspiring. With your intelligence and drive, you are destined for remarkable accomplishments. May this birthday bring you joy, memorable experiences, and the strength to turn every dream into reality. Wishing you a year that shines as brightly as you do! ✨🎂";
 
 let i = 0;
 const typewriterEl = document.getElementById('typewriter');
@@ -7,72 +7,75 @@ function typeWriter() {
   if (i < messageText.length) {
     typewriterEl.innerHTML += messageText.charAt(i);
     i++;
-    setTimeout(typeWriter, 35);
+    setTimeout(typeWriter, 30);
   }
 }
 
-// Floating hearts + rabbits
+// Elegant floating particles
 function createFloat() {
   const item = document.createElement('div');
   item.style.position = 'fixed';
   item.style.left = Math.random() * 100 + 'vw';
-  item.style.top = '-50px';
-  item.style.fontSize = Math.random() * 25 + 25 + 'px';
+  item.style.top = '-70px';
+  item.style.fontSize = Math.random() * 32 + 26 + 'px';
   item.style.zIndex = '1';
-  item.style.opacity = Math.random() * 0.7 + 0.6;
-  item.textContent = Math.random() > 0.5 ? '❤️' : '🐰';
+  item.style.opacity = Math.random() * 0.8 + 0.5;
+  item.textContent = Math.random() > 0.5 ? '✨' : '❤️';
   document.querySelector('.floating-container').appendChild(item);
 
-  let y = -50;
+  let y = -70;
   const fall = setInterval(() => {
-    y += 6;
+    y += 4.5 + Math.random() * 4;
     item.style.top = y + 'px';
-    if (y > window.innerHeight + 50) {
+    if (y > window.innerHeight + 100) {
       clearInterval(fall);
       item.remove();
     }
-  }, 30);
+  }, 25);
 }
 
+// Premium confetti
 function launchConfetti() {
-  const emojis = ['🎉', '✨', '💖', '🐰', '🎂'];
-  for (let k = 0; k < 90; k++) {
+  const emojis = ['🎉', '✨', '🎂', '💫', '🌟', '🦋'];
+  for (let k = 0; k < 130; k++) {
     setTimeout(() => {
       const c = document.createElement('div');
       c.style.position = 'fixed';
       c.style.left = Math.random() * 100 + 'vw';
-      c.style.top = '-20px';
-      c.style.fontSize = '22px';
+      c.style.top = '-40px';
+      c.style.fontSize = Math.random() * 14 + 24 + 'px';
       c.style.zIndex = '999';
       c.textContent = emojis[Math.floor(Math.random() * emojis.length)];
       document.body.appendChild(c);
 
-      let pos = -20;
+      let pos = -40;
+      let rot = Math.random() * 360;
       const anim = setInterval(() => {
-        pos += 7 + Math.random() * 6;
+        pos += 7 + Math.random() * 8;
+        rot += 15;
         c.style.top = pos + 'px';
-        c.style.transform = `rotate(${pos * 4}deg)`;
-        if (pos > window.innerHeight) {
+        c.style.transform = `rotate(${rot}deg)`;
+        if (pos > window.innerHeight + 80) {
           clearInterval(anim);
           c.remove();
         }
-      }, 25);
-    }, k * 7);
+      }, 20);
+    }, k * 5);
   }
 }
 
 function launchSurprise() {
   launchConfetti();
-  alert("Wishing you the best year ahead, Nira! Keep smiling and chasing your dreams. 🐰✨");
+  alert("Happy Birthday Nira! May this special day bring you endless happiness and success in all your dreams. ✨");
 }
 
-// Start on load
+// Initialize
 window.onload = () => {
   typeWriter();
-  launchConfetti(); 
+  launchConfetti(); // Grand welcome
   
-  // Continuous floating bunnies + hearts
+  // Continuous premium particles
   setInterval(() => {
-    if (Math.random() > 0.4) createFloat();
-  }, 220);
+    if (Math.random() > 0.3) createFloat();
+  }, 140);
 };
